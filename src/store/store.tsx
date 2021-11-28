@@ -8,6 +8,8 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 import { pokemonsReducer } from './pokemons'
+import { pokemonsDataReducer } from './pokemonsData'
+import { searchPokemonReducer } from './searchPokemon'
 
 declare global {
   interface Window {
@@ -20,10 +22,12 @@ const persistReducers = persistReducer(
     key: 'root',
     storage,
     whitelist: [
+      'searchPokemonReducer'
     ],
   },
   combineReducers({
     pokemonsReducer,
+    pokemonsDataReducer,
   }),
 )
 

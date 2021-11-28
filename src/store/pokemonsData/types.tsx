@@ -1,0 +1,3 @@
+export const GET_POKEMONS_DATA_START = "@pokemons/GET_POKEMON_START"
+export const GET_POKEMONS_DATA_SUCCESS = "@pokemons/GET_POKEMON_SUCCESS"
+export const GET_POKEMONS_DATA_FAILURE = "@pokemons/GET_POKEMON_FAILURE"
