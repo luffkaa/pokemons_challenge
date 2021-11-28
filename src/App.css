@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+.pokemons__container {
+  margin: 2vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2vw
+}
