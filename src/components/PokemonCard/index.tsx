@@ -3,6 +3,7 @@ import './styles.css'
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonsData, selectExactPokemon } from "../../store";
 import { useEffect, useState } from "react";
+import PokemonInfo from "./PokemonInfo";
 
 export default function PokemonCard({
   name,
@@ -19,8 +20,6 @@ export default function PokemonCard({
   useEffect(() => {
     dispatch(getPokemonsData(name))
   }, [dispatch, name])
-
-  console.log('pokemon',pokemon)
   
   return (
     <div className="pokemon_card__container"
@@ -37,27 +36,7 @@ export default function PokemonCard({
       }
       <h3>{name}</h3>
       { pokemon && isInfoOpen && 
-        <ul className="pokemon_info__container">
-          <li>Species: {pokemon.species?.name}</li>
-          <li>Stats: 
-            <ul>
-              {pokemon.stats.map((stat: any, index: number) => 
-                <li key={`${stat.stat.name}_${index}`}>{stat.stat.name} {stat.base_stat}</li>
-              )}
-            </ul>
-          </li>
-          <li>Types: 
-            <ul>
-              {pokemon.types.map((type: any, index: number) => 
-                <li key={`${type.type.name}_${index}`}>{type.type.name}</li>
-              )}
-            </ul>
-          </li>
-          <li>Weight: {pokemon.weight} </li>
-          <li>Moves: {pokemon.moves.map((move: any, index: number) =>
-            <span key={`${move.move.name}_${index}`}>{move.move.name} </span>
-          )}</li>
-        </ul>
+        <PokemonInfo {...pokemon}/>
       }
     </div>
   )

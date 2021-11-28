@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPokemons, selectPokemons, selectPokemonsPending } from './store';
+import {
+  getAllPokemons,
+  getPokemons,
+  selectPokemons,
+  selectPokemonsPending
+} from './store';
 import {
   NavigationButtonsContainer,
-  PokemonCard
+  PokemonCard,
+  SearchPokemon
 } from './components';
 
 function App() {
@@ -17,11 +23,11 @@ function App() {
   const handleLoadNext = () => {
     const newOffset = pokemonsOffset + pokemonsLimit
     if (newOffset > allPokemons.count) {
-      setPokemonsOffset(allPokemons.count)
-      dispatch(getAllPokemons(allPokemons.count, pokemonsLimit))
+      setPokemonsOffset(allPokemons.count - pokemonsLimit)
+      dispatch(getPokemons(allPokemons.count - pokemonsLimit, pokemonsLimit))
     } else {
       setPokemonsOffset(newOffset)
-      dispatch(getAllPokemons(newOffset, pokemonsLimit))
+      dispatch(getPokemons(newOffset, pokemonsLimit))
     }
   }
 
@@ -29,19 +35,24 @@ function App() {
     const newOffset = pokemonsOffset - pokemonsLimit
     if (newOffset < 0) {
       setPokemonsOffset(0)
-      dispatch(getAllPokemons(0, pokemonsLimit))
+      dispatch(getPokemons(0, pokemonsLimit))
     } else {
       setPokemonsOffset(newOffset)
-      dispatch(getAllPokemons(newOffset, pokemonsLimit))
+      dispatch(getPokemons(newOffset, pokemonsLimit))
     }
   }
   
   useEffect(() => {
-    dispatch(getAllPokemons(pokemonsOffset, pokemonsLimit))
+    dispatch(getPokemons(pokemonsOffset, pokemonsLimit))
   }, [dispatch, pokemonsLimit, pokemonsOffset])
+
+  useEffect(() => {
+    dispatch(getAllPokemons())
+  },[dispatch])
 
   return (
     <div className="App">
+      <SearchPokemon />
       <div className="pokemons__container">
         { pending ? 'Data loading...' : 
           allPokemons?.results?.map((pokemon: any, index: number) => 

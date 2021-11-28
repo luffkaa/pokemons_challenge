@@ -7,6 +7,7 @@ import {
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
+import { allPokemonsReducer } from './allPokemons/reducers';
 import { pokemonsReducer } from './pokemons'
 import { pokemonsDataReducer } from './pokemonsData'
 import { searchPokemonReducer } from './searchPokemon'
@@ -26,8 +27,10 @@ const persistReducers = persistReducer(
     ],
   },
   combineReducers({
+    allPokemonsReducer,
     pokemonsReducer,
     pokemonsDataReducer,
+    searchPokemonReducer,
   }),
 )
 
