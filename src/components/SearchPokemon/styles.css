@@ -1,0 +1,25 @@
+.pokemons__search {
+  box-sizing: border-box;
+  margin: 2vh;
+  padding: 4vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+  gap: 2vw
+}
+
+.pokemons__search_input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 20px;
+  outline: none;
+}
+
+.pokemons__search_result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw
+}

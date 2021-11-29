@@ -1,0 +1,23 @@
+.pokemon_card__container {
+  width: 200px;
+  height: 20vh;
+  position: relative;
+}
+
+.pokemon_info__container {
+  position: absolute;
+  top: 20vh;
+  left: 0;
+  padding: 1vh 3vw;
+  background-color: #fff;
+  border: 1px solid #000;
+  z-index: 1;
+  width: 300px;
+  text-align: left;
+}
+
+.pokemon_info__container > li {
+  margin: 0;
+  padding: 0;
+}
+
